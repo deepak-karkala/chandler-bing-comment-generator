@@ -176,6 +176,7 @@ def main():
     #########################
     # Instantiate DPO trainer
     #########################
+    """
     trainer = DPOTrainer(
         model,
         ref_model,
@@ -191,6 +192,18 @@ def main():
         peft_config=get_peft_config(model_args),
         loss_type=training_args.loss_type,
     )
+    """
+    trainer = DPOTrainer(
+        model,
+        ref_model,
+        args=training_args,
+        train_dataset=raw_datasets["train"],
+        eval_dataset=raw_datasets["test"],
+        processing_class=tokenizer,
+        peft_config=get_peft_config(model_args),
+    )
+
+
 
     ###############
     # Training loop
