@@ -1,5 +1,5 @@
 # Model arguments
-model_name_or_path: meta-llama/Llama-3.1-8B-Instruct
+model_name_or_path: HuggingFaceTB/SmolLM2-135M-Instruct
 torch_dtype: bfloat16
 attn_implementation: flash_attention_2
 
@@ -37,7 +37,7 @@ gradient_accumulation_steps: 4
 gradient_checkpointing: true
 gradient_checkpointing_kwargs:
   use_reentrant: false
-hub_model_id: zephyr-7b-dpo-qlora
+hub_model_id: smollm2-135m-dpo-qlora
 learning_rate: 5.0e-6
 log_level: info
 logging_steps: 10
@@ -46,7 +46,7 @@ max_length: 1024
 max_prompt_length: 512
 num_train_epochs: 1
 optim: paged_adamw_32bit
-output_dir: data/zephyr-7b-dpo-qlora # It is handy to append `hub_model_revision` to keep track of your local experiments
+output_dir: data/smollm2-135m-dpo-qlora # It is handy to append `hub_model_revision` to keep track of your local experiments
 per_device_train_batch_size: 2
 per_device_eval_batch_size: 4
 push_to_hub: false
