@@ -72,8 +72,8 @@ def main():
         configs=data_args.dataset_configs,
         columns_to_keep=["messages", "chosen", "rejected", "prompt", "completion", "label"],
     )
-    if data_args.is_sample_data:
-        raw_datasets = raw_datasets.select(range(0, len(raw_datasets), data_args.sample_factor))
+    #if data_args.is_sample_data:
+    raw_datasets = raw_datasets.select(range(0, len(raw_datasets), 100))
     
     logger.info(
         f"Training on the following splits: {[split + ' : ' + str(dset.num_rows) for split, dset in raw_datasets.items()]}"

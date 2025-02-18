@@ -26,8 +26,6 @@ dataset_splits:
 - train_prefs
 - test_prefs
 preprocessing_num_workers: 8
-is_sample_data: true
-sample_factor: 100
 
 # DPOTrainer arguments
 bf16: true

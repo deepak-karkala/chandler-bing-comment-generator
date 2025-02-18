@@ -234,15 +234,6 @@ class DataArguments:
             )
         },
     )
-    is_sample_data: Optional[bool] = field(
-        default=False,
-        metadata={"help": ("Whether to train with small subset of data for debugging")},
-    )
-    sample_factor: Optional[int] = field(
-        default=100,
-        metadata={"help": ("Factor by which data will be sub-sampled")},
-    )
-
 
 @dataclass
 class SFTConfig(trl.SFTConfig):
