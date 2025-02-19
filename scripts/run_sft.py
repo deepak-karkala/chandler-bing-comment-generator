@@ -114,13 +114,11 @@ def main():
     )
 
     model = model_args.model_name_or_path
-    """
     # For ChatML we need to add special tokens and resize the embedding layer
     if "<|im_start|>" in tokenizer.chat_template and "gemma-tokenizer-chatml" not in tokenizer.name_or_path:
         model = AutoModelForCausalLM.from_pretrained(model_args.model_name_or_path, **model_kwargs)
-        model, tokenizer = setup_chat_format(model, tokenizer)
+        #model, tokenizer = setup_chat_format(model, tokenizer)
         model_kwargs = None
-    """
 
     #####################
     # Apply chat template
@@ -157,6 +155,7 @@ def main():
     ########################
     # Initialize the Trainer
     ########################
+    """
     trainer = SFTTrainer(
         model=model,
         model_init_kwargs=model_kwargs,
@@ -169,6 +168,16 @@ def main():
         packing=True,
         peft_config=get_peft_config(model_args),
         dataset_kwargs=training_args.dataset_kwargs,
+    )
+    """
+    training_args.model_init_kwargs = model_kwargs
+    trainer = SFTTrainer(
+        model=model,
+        args=training_args,
+        train_dataset=train_dataset,
+        eval_dataset=eval_dataset,
+        processing_class=tokenizer,
+        peft_config=get_peft_config(model_args),
     )
 
     ###############
@@ -196,9 +205,9 @@ def main():
 
     # Save everything else on main process
     kwargs = {
-        "finetuned_from": model_args.model_name_or_path,
+       # "finetuned_from": model_args.model_name_or_path,
         "dataset": list(data_args.dataset_mixer.keys()),
-        "dataset_tags": list(data_args.dataset_mixer.keys()),
+        #"dataset_tags": list(data_args.dataset_mixer.keys()),
         "tags": ["alignment-handbook"],
     }
     if trainer.accelerator.is_main_process:

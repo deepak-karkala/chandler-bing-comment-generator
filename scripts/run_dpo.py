@@ -197,6 +197,10 @@ def main():
         loss_type=training_args.loss_type,
     )
     """
+    training_args.model_init_kwargs = model_kwargs
+    training_args.ref_model_init_kwargs = ref_model_kwargs
+
+    # Load model using 
     trainer = DPOTrainer(
         model,
         ref_model,
