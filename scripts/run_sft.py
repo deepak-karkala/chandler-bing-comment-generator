@@ -206,7 +206,7 @@ def main():
     # Save everything else on main process
     kwargs = {
        # "finetuned_from": model_args.model_name_or_path,
-        "model_name": "smollm2-135m-sft-qlora-test",
+        "model_name": training_args.hub_model_id,
         "dataset_name": list(data_args.dataset_mixer.keys()),
         #"dataset_tags": list(data_args.dataset_mixer.keys()),
         "tags": ["alignment-handbook"],
