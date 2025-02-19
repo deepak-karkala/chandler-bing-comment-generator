@@ -73,8 +73,8 @@ def main():
         columns_to_keep=["messages", "chosen", "rejected", "prompt", "completion", "label"],
     )
     #if data_args.is_sample_data:
-    raw_datasets["train"] = raw_datasets["train"].select(range(0, len(raw_datasets["train"]), 25))
-    raw_datasets["test"] = raw_datasets["test"].select(range(0, len(raw_datasets["test"]), 25))
+    raw_datasets["train"] = raw_datasets["train"].select(range(0, len(raw_datasets["train"]), 100))
+    raw_datasets["test"] = raw_datasets["test"].select(range(0, len(raw_datasets["test"]), 100))
 
     logger.info(
         f"Training on the following splits: {[split + ' : ' + str(dset.num_rows) for split, dset in raw_datasets.items()]}"
