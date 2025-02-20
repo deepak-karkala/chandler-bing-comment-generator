@@ -4,6 +4,7 @@ import sys
 import yaml
 import pandas as pd
 
+from tqdm import tqdm
 from ollama import chat
 from ollama import ChatResponse
 
@@ -23,23 +24,16 @@ with open(file_path, "r") as file:
 
 df = pd.read_parquet(args["dataset"]["data_input_path"])
 
-for i in range(len(df[0: len(df): 1000])):
+for i in tqdm(range(len(df))):
     message_system_user = list(df.iloc[i]["prompt"])
-    """
     try:
         response: ChatResponse = chat(model=args["model"]["model_ollama"], messages=message_system_user)
         message_rejected = {}
         message_rejected["content"] = response['message']['content']
         message_rejected["role"] = "assistant"
-        df.loc[i]["rejected"] = [message_rejected]
+        df.loc[i, "rejected"] = [message_rejected]
     except:
         logger.info(f"LLM reply failed for sample: {i}")
-        df.loc[i]["rejected"] = None
-    """
-    response: ChatResponse = chat(model=args["model"]["model_ollama"], messages=message_system_user)
-    message_rejected = {}
-    message_rejected["content"] = response['message']['content']
-    message_rejected["role"] = "assistant"
-    df.loc[i]["rejected"] = [message_rejected]
+        df.loc[i, "rejected"] = None
 
 df.to_parquet(args["dataset"]["data_output_path"])
