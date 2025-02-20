@@ -55,6 +55,7 @@ _deps = [
     "isort>=5.12.0",
     "ninja>=1.11.1",
     "numpy>=1.24.2",
+    "ollama",
     "packaging>=23.0",
     "parameterized>=0.9.0",
     "peft>=0.9.0",
