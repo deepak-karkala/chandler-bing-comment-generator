@@ -1,5 +1,5 @@
 model:
-  model_ollama: llama3.2:3b-instruct-q4_0
+  model_ollama: llama3.2:1b-instruct-q4_0
 
 dataset:
   data_input_path: datasets/friends/dataset_sft_dpo_without_rejected.parquet
