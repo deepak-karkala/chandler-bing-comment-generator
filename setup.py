@@ -59,7 +59,9 @@ _deps = [
     "parameterized>=0.9.0",
     "peft>=0.9.0",
     "protobuf<=3.20.2",  # Needed to avoid conflicts with `transformers`
+    "pyarrow",
     "pytest",
+    "pyyaml",
     "safetensors>=0.3.3",
     "sentencepiece>=0.1.99",
     "scipy",

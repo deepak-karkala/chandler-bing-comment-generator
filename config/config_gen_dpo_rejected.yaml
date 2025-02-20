@@ -1,0 +1,6 @@
+model:
+  model_ollama: llama3.1:8b-instruct-fp16
+
+dataset:
+  data_input_path: datasets/friends/dataset_sft_dpo_without_rejected.parquet
+  data_output_path: datasets/friends/dataset_sft_dpo.parquet
