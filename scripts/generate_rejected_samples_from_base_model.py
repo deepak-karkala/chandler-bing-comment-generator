@@ -25,6 +25,7 @@ df = pd.read_parquet(args["dataset"]["data_input_path"])
 
 for i in range(len(df)):
     message_system_user = df.iloc[i]["prompt"]
+    """
     try:
         response: ChatResponse = chat(model=args["model"]["model_ollama"], messages=message_system_user)
         message_rejected = {}
@@ -34,5 +35,11 @@ for i in range(len(df)):
     except:
         logger.info(f"LLM reply failed for sample: {i}")
         df.loc[i]["rejected"] = None
+    """
+    response: ChatResponse = chat(model=args["model"]["model_ollama"], messages=message_system_user)
+    message_rejected = {}
+    message_rejected["content"] = response['message']['content']
+    message_rejected["role"] = "assistant"
+    df.loc[i]["rejected"] = [message_rejected]
 
 df.to_parquet(args["dataset"]["data_output_path"])
