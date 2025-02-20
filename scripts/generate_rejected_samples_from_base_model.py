@@ -23,8 +23,8 @@ with open(file_path, "r") as file:
 
 df = pd.read_parquet(args["dataset"]["data_input_path"])
 
-for i in range(len(df)):
-    message_system_user = df.iloc[i]["prompt"]
+for i in range(len(df[0: len(df): 1000])):
+    message_system_user = list(df.iloc[i]["prompt"])
     """
     try:
         response: ChatResponse = chat(model=args["model"]["model_ollama"], messages=message_system_user)
